@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: checkmovil-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: checkmovil_super_secret_key_2024_production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: checkmovil-db
+          property: connectionString
+
+databases:
+  - name: checkmovil-db
+    databaseName: checkmovil_db
+    user: checkmovil_user 
